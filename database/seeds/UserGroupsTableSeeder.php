@@ -18,9 +18,9 @@ class UserGroupsTableSeeder extends Seeder
         ]);
 
         DB::table('user_groups')->insert([
-            'group_name' => 'Member',
-            'role' => 'member',
-            'GROUP_CODE' => 'member',
+            'group_name' => 'Customer',
+            'role' => 'customer',
+            'GROUP_CODE' => 'customer',
         ]);
     }
 }
