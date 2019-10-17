@@ -15,6 +15,11 @@ class CreatePackagesTable extends Migration
     {
         Schema::create('packages', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('packages_name');
+            $table->enum('type', ['free', 'fixed', 'monthly', 'yearly']);
+            $table->integer('query_limit');
+            $table->float('amount', 8, 2);
+            $table->string('packages_token', 100);
             $table->timestamps();
         });
     }

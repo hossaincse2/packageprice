@@ -19,6 +19,10 @@ class CreateUserPackageQueriesTable extends Migration
             $table->unsignedBigInteger('order_id')->nullable(); 
             $table->unsignedBigInteger('package_id')->nullable(); 
             $table->integer('query_count');
+            $table->string('domain_name');
+            $table->string('ip_address');
+            $table->string('request_url');
+            $table->string('packages_token');
             $table->timestamps();
 
             $table->foreign('user_id')
