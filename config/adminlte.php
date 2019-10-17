@@ -162,7 +162,8 @@ return [
             'text'        => 'Cusomer Orders',
             'url'         => 'admin/orders',
             'icon'        => 'fas fa-users',
-            'label_color' => 'success' 
+            'label_color' => 'success' ,
+            'roles' => ['customer'],
         ],
         [
             'text'        => 'Users',
