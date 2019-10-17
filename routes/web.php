@@ -27,18 +27,18 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/dashboard', 'Admin\Dashboard\IndexController@index');
     Route::get('/admin/profile', 'Admin\Dashboard\IndexController@profile');
     
-    // Package 
-    Route::get('/admin/package', 'Admin\Package\IndexController@index');
-    Route::get('/admin/package/create', 'Admin\Package\IndexController@create');
-
-    // Users 
-    Route::get('/admin/users', 'Admin\Users\IndexController@index');
-    Route::get('/admin/users', 'Admin\Users\IndexController@changePassword');
+    
 
     // ........................ Privilege For Admin ......................................................................
 
     Route::group(['middleware' => 'role:admin'], function() {
-       // Route::get('/admin/profile', 'Admin\Package\IndexController@index');
+        // Package 
+        Route::get('/admin/package', 'Admin\Package\IndexController@index');
+        Route::get('/admin/package/create', 'Admin\Package\IndexController@create');
+
+         // Users 
+        Route::get('/admin/users', 'Admin\Users\IndexController@index');
+        Route::get('/admin/changePassword', 'Admin\Users\IndexController@changePassword');
     });
 
 });

@@ -159,17 +159,39 @@ return [
             ]
         ],
         [
+            'text'        => 'Cusomer Orders',
+            'url'         => 'admin/orders',
+            'icon'        => 'fas fa-users',
+            'label_color' => 'success' 
+        ],
+        [
             'text'        => 'Users',
             'url'         => 'admin/users',
             'icon'        => 'fas fa-users',
             'label_color' => 'success' 
         ],
+        ['header' => 'Reports'],
+        [
+            'text' => 'Total Orders',
+            'url'  => 'admin/orderReports',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text' => 'Audit Log',
+            'url'  => 'admin/auditlog',
+            'icon' => 'fas fa-fw fa-user',
+        ], 
+        [
+            'text' => 'Error Log',
+            'url'  => 'admin/auditlog',
+            'icon' => 'fas fa-fw fa-user',
+        ], 
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
             'url'  => 'admin/profile',
             'icon' => 'fas fa-fw fa-user',
-        ],
+        ], 
         [
             'text' => 'change_password',
             'url'  => 'admin/settings',
