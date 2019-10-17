@@ -20,3 +20,11 @@ Auth::routes();
 Route::get('/home', function() {
     return view('home');
 })->name('home')->middleware('auth');
+
+Route::group(['middleware' => 'auth'], function () {
+
+    // Dashoboard 
+    Route::get('/dashboard', 'Admin\Dashboard\IndexController@index');
+    Route::get('/profile', 'Admin\Dashboard\IndexController@profile');
+
+});
