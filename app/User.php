@@ -36,4 +36,28 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function package() {
+        return $this->belongsTo(Models\Package::class);
+    }
+
+    public function factory() {
+        return $this->belongsTo(Models\Factory::class, 'factory_id');
+    }
+
+    public function groups() {
+        return $this->belongsToMany(UserGroup::class, "user_user_groups", "user_id", "group_id");
+    }
+
+    public function hasGroup($group) {
+        $groups = $this->groups()->get(['group_code'])->toArray();
+
+
+        //print_r($groups);exit;
+        $grps = [];
+        foreach ($groups as $g)
+            $grps[] = $g['group_code'];
+
+        return in_array($group, $grps);
+    }
 }

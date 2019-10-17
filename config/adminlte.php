@@ -137,16 +137,37 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-file',
-            'label'       => 4,
+            'text'        => 'Dashboard',
+            'url'         => 'admin/dashboard',
+            'icon'        => 'fas fa-tachometer-alt',
             'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Packages',
+            'url'         => 'admin/package',
+            'icon'        => 'fas fa-box-open',
+            'label_color' => 'success',
+            'submenu' => [
+                [
+                    'text' => 'Add Package',
+                    'url'  => 'admin/package/create',
+                ],
+                [
+                    'text' => 'List Package',
+                    'url'  => 'admin/package',
+                ]
+            ]
+        ],
+        [
+            'text'        => 'Users',
+            'url'         => 'admin/users',
+            'icon'        => 'fas fa-users',
+            'label_color' => 'success' 
         ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
-            'url'  => 'admin/settings',
+            'url'  => 'admin/profile',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
@@ -154,57 +175,7 @@ return [
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'aqua',
-        ],
+         
     ],
 
     /*

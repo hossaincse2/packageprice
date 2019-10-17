@@ -17,14 +17,28 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', function() {
-    return view('home');
-})->name('home')->middleware('auth');
+// Route::get('/home', function() {
+//     return view('home');
+// })->name('home')->middleware('auth');
 
 Route::group(['middleware' => 'auth'], function () {
 
     // Dashoboard 
-    Route::get('/dashboard', 'Admin\Dashboard\IndexController@index');
-    Route::get('/profile', 'Admin\Dashboard\IndexController@profile');
+    Route::get('/admin/dashboard', 'Admin\Dashboard\IndexController@index');
+    Route::get('/admin/profile', 'Admin\Dashboard\IndexController@profile');
+    
+    // Package 
+    Route::get('/admin/package', 'Admin\Package\IndexController@index');
+    Route::get('/admin/package/create', 'Admin\Package\IndexController@create');
+
+    // Users 
+    Route::get('/admin/users', 'Admin\Users\IndexController@index');
+    Route::get('/admin/users', 'Admin\Users\IndexController@changePassword');
+
+    // ........................ Privilege For Admin ......................................................................
+
+    Route::group(['middleware' => 'role:admin'], function() {
+       // Route::get('/admin/profile', 'Admin\Package\IndexController@index');
+    });
 
 });

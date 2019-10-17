@@ -14,7 +14,7 @@ class IndexController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.package.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class IndexController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.package.create');
     }
 
     /**

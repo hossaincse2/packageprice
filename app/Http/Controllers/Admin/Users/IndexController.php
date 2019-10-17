@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Dashboard;
+namespace App\Http\Controllers\Admin\Users;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -31,11 +31,11 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard.index');
+        return view('admin.users.index');
     }
 
-    public function profile() {
-        return view('admin.dashboard.user_profile');
+    public function changePassword() {
+        return view('admin.users.changePassword');
     }
 
 }
