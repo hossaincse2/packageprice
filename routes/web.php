@@ -32,6 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
     // ........................ Privilege For Admin ......................................................................
 
     Route::group(['middleware' => 'role:admin'], function() {
+
         // Package 
         Route::get('/admin/package', 'Admin\Package\IndexController@index');
         Route::get('/admin/package/create', 'Admin\Package\IndexController@create');
@@ -39,6 +40,15 @@ Route::group(['middleware' => 'auth'], function () {
          // Users 
         Route::get('/admin/users', 'Admin\Users\IndexController@index');
         Route::get('/admin/changePassword', 'Admin\Users\IndexController@changePassword');
+
+        //Order
+        Route::get('/admin/orders', 'Admin\Order\IndexController@index');
+        Route::get('/admin/order-reports', 'Admin\Order\IndexController@order_reports');
+
+        //Activity Logs
+        Route::get('/admin/order', 'Admin\ActivityLog\IndexController@auditLog');
+        Route::get('/admin/order-reports', 'Admin\ActivityLog\IndexController@errorLog');
+
     });
 
 });
