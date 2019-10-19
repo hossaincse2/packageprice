@@ -20,6 +20,13 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('user_id')->nullable(); 
             $table->unsignedBigInteger('package_id')->nullable(); 
             $table->timestamps();
+
+            $table->foreign('user_id')
+            ->references('id')->on('users');
+
+            $table->foreign('package_id')
+            ->references('id')->on('packages');
+            
         });
     }
 

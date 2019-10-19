@@ -15,8 +15,8 @@ class PackageTableSeeder extends Seeder
             'packages_name' => 'Demo',
             'type' => 'free', 
             'query_limit' => '500',
-            'amount' => '0.00',
-            'packages_token' => '7OPkdPOlNaN',
+            'price' => '0.00',
+            'api_key' => 'at_7OPkdPOlNaN',
         ]);
     }
 }

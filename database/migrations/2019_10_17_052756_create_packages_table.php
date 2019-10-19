@@ -18,8 +18,8 @@ class CreatePackagesTable extends Migration
             $table->string('packages_name');
             $table->enum('type', ['free', 'fixed', 'monthly', 'yearly']);
             $table->integer('query_limit');
-            $table->float('amount', 8, 2);
-            $table->string('packages_token', 100);
+            $table->float('price', 8, 2);
+            $table->string('api_key', 100);
             $table->timestamps();
         });
     }

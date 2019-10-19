@@ -22,7 +22,7 @@ class CreateUserPackageQueriesTable extends Migration
             $table->string('domain_name');
             $table->string('ip_address');
             $table->string('request_url');
-            $table->string('packages_token');
+            $table->string('api_key');
             $table->timestamps();
 
             $table->foreign('user_id')
