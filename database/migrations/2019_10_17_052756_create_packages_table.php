@@ -15,7 +15,7 @@ class CreatePackagesTable extends Migration
     {
         Schema::create('packages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('packages_name');
+            $table->string('package_name');
             $table->enum('type', ['free', 'fixed', 'monthly', 'yearly']);
             $table->integer('query_limit');
             $table->float('price', 8, 2);

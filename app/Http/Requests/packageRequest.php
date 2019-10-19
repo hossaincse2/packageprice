@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+use Illuminate\Http\Request;
+
 class PackageRequest extends FormRequest
 {
     /**
@@ -13,7 +15,7 @@ class PackageRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,10 +23,23 @@ class PackageRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
+     public function rules(Request $request) {
         return [
-            //
-        ];
+               'package_name' => 'required',
+               'query_limit' => 'required|numeric',
+               'price' => 'required|numeric',
+         ];
+    }
+    /**
+     * Custom message for validation
+     *
+     * @return array
+     */
+    public function messages() {
+        return [
+            'package_name.required' => 'Packages name is required!',
+            'query_limit.required' => 'Query Limit is required!',
+            'price.required' => 'Price is required!',
+         ];
     }
 }

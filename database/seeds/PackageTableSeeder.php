@@ -12,7 +12,7 @@ class PackageTableSeeder extends Seeder
     public function run()
     {
         DB::table('packages')->insert([
-            'packages_name' => 'Demo',
+            'package_name' => 'Demo',
             'type' => 'free', 
             'query_limit' => '500',
             'price' => '0.00',

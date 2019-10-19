@@ -21,8 +21,8 @@ class ContractServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app>bind(PackageInterface::class, PackageRepo::class);
-        $this->app>bind(ActivityLogInterface::class, ActivityLogRepo::class);
+        $this->app->bind(PackageInterface::class, PackageRepo::class);
+        $this->app->bind(ActivityLogInterface::class, ActivityLogRepo::class);
     }
 
     /**

@@ -5,8 +5,12 @@ namespace App\Http\Controllers\Admin\Package;
 use App\Http\Controllers\Controller;
 use App\Models\Package;
 use App\Contracts\PackageInterface;
+use App\Contracts\ActivityLogInterface;
 use App\Http\Requests\PackageRequest;
 use Illuminate\Http\Request;
+
+use Session;
+
 
 class IndexController extends Controller
 {
@@ -25,9 +29,17 @@ class IndexController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id = null, PackageInterface $packageRepo, Package $packageEloquent)
     {
-        return view('admin.package.create');
+        if ($id) {
+            $title = "Edit Package";
+            $package = $packageRepo->find($id);
+        } else {
+            $package = $packageEloquent;
+            $title = "Add New Package";
+        }
+        $message = "";
+        return view('admin.package.create', ['message' => $message, "package" => $package, 'title' => $title]);
     }
 
     /**
@@ -36,61 +48,54 @@ class IndexController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($id = null, PackageRequest $request, PackageInterface $package, Package $companyEloquent, ActivityLogInterface $activityInterFace)
+    public function store($id = null, PackageRequest $request, PackageInterface $package, Package $packageEloquent, ActivityLogInterface $activityInterFace)
     {
         $message = "";
-
-        //print_r($request->all()); exit;
-        //print_r($request_ex);
-        //exit;
-
-
+        //dd($request->all());
         try {
             if ($request->isMethod("POST")) {
                 $requestExcept = $request->except(['save', '_token']);
                 //dd($requestExcept);
-                //print_r($requestExcept); 
-
-
+                //print_r($requestExcept);   
                 if ($id) {
-                    $log_title = "Edit Company";
-                    $message = "Company Updated Successfully!";
-                    $companyEloquent = $package->find($id);
+                    $log_title = "Edit Package";
+                    $message = "Package Updated Successfully!";
+                    $packageEloquent = $package->find($id);
 
-                    $ArrayByID = $companyEloquent->toArray();
+                    $ArrayByID = $packageEloquent->toArray();
 
                    // dd($ArrayByID);
 
                     //echo $oldvalueNewvalue;exit;
 
-                    if ($companyEloquent->id == $id)
-                        $data = $companyEloquent->update($request->all());
+                    if ($packageEloquent->id == $id)
+                        $data = $packageEloquent->update($request->all());
                 } else {
                     $ArrayByID = "";
-                    $log_title = "Add Company";
-                    $companyEloquent->fill($request->all());
-
+                    $log_title = "Add Package"; 
+                    $packageEloquent->fill($request->all());
+                     //dd($packageEloquent);
                     //print_r($companyEloquent);exit;
-                    $data = $package->save($companyEloquent);
-                    $message = "Company Added Successfully!";
+                    $data = $package->save($packageEloquent);
+                    $message = "Package Added Successfully!";
                 }
 
                 if ($data) {
                     $log_type = "audit_log";
 
-                    $activityInterFace->dataSave($id, $requestExcept, $ArrayByID, $log_title, $log_type);
+                    //$activityInterFace->dataSave($id, $requestExcept, $ArrayByID, $log_title, $log_type);
 
                     Session::flash('m-class', 'alert-success');
                     Session::flash('message', $message);
 
-                    return redirect()->route('company-list');
+                    return redirect()->route('admin/package');
                 }
             }
         } catch (\Exception $e) {
             $dBmessage = $e->getMessage();
             $message = "Something went wrong please try again!";
             $log_type = "error_log";
-            $activityInterFace->dataSave($id = "", $dBmessage, $ArrayByID = "", $log_title, $log_type);
+           // $activityInterFace->dataSave($id = "", $dBmessage, $ArrayByID = "", $log_title, $log_type);
 
             $error = \Illuminate\Validation\ValidationException::withMessages([
                         'exception' => [$message]

@@ -17,9 +17,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-// Route::get('/home', function() {
-//     return view('home');
-// })->name('home')->middleware('auth');
+Route::get('/home', function() {
+    return view('home');
+})->name('home')->middleware('auth');
 
 Route::group(['middleware' => 'auth'], function () {
 
@@ -31,11 +31,12 @@ Route::group(['middleware' => 'auth'], function () {
 
     // ........................ Privilege For Admin ......................................................................
 
-    Route::group(['middleware' => 'role:admin'], function() {
+    Route::group(['prefix' => 'admin','middleware' => 'role:admin'], function() {
 
         // Package 
-        Route::get('/admin/package', 'Admin\Package\IndexController@index');
-        Route::get('/admin/package/create', 'Admin\Package\IndexController@create');
+        Route::get('package', 'Admin\Package\IndexController@index')->name('package');
+        Route::get('add-package', 'Admin\Package\IndexController@create')->name('add-package');
+        Route::post('add-package', 'Admin\Package\IndexController@store')->name('add-package');
 
          // Users 
         Route::get('/admin/users', 'Admin\Users\IndexController@index');

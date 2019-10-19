@@ -150,7 +150,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Add Package',
-                    'url'  => 'admin/package/create',
+                    'url'  => 'admin/add-package',
                 ],
                 [
                     'text' => 'List Package',
