@@ -37,6 +37,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('package', 'Admin\Package\IndexController@index')->name('package');
         Route::get('add-package', 'Admin\Package\IndexController@create')->name('add-package');
         Route::post('add-package', 'Admin\Package\IndexController@store')->name('add-package');
+        
+        Route::get('add-package/{id}', 'Admin\Package\IndexController@create')->name('add-edit-package');
+        Route::post('add-package/{id}', 'Admin\Package\IndexController@store')->name('store-package');
+
+        Route::get('delete-package/{id}', 'Admin\Package\IndexController@destroy')->name('delete-package');
 
          // Users 
         Route::get('/admin/users', 'Admin\Users\IndexController@index');

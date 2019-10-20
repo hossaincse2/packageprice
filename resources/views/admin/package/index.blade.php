@@ -19,7 +19,8 @@
                 <div class="row">
                   <div class="col-sm-12">
                   @if(Session::has('message'))
-                  <div class="alert alert-success   show" role="alert">
+                  <div class="alert @if (Session::has('m-class')) {{ Session::get('m-class') }} @endif show" role="alert">
+                  <!-- alert-success -->
                       {{ Session::get('message') }}
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
@@ -48,7 +49,7 @@
                       <td>{{ $package->query_limit }}</td>
                       <td>{{ $package->price }}</td>
                       <td>{{ $package->api_key }}</td>
-                      <td> <a href="#">Edit</a> | <a href="#">Delete</a></td>
+                      <td> <a href="{{ url('admin/add-package/'.$package->id) }}">Edit</a> | <a href="{{ url('admin/delete-package/'.$package->id) }}">Delete</a></td>
                     </tr>
                   @endforeach 
                  </tbody>

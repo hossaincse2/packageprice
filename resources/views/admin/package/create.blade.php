@@ -45,17 +45,17 @@
                 <div class="form-group {{ $errors->has('type') ? 'has-error' : ''}}">
                   <label for="type">Type</label>
                   <select class="form-control" name="type" id="type">
-                    <option value="">Select Type</option>
-                    <option value="free">Free</option>
-                    <option value="fixed">One-time purchase</option>
-                    <option value="monthly">Monthly subscription</option>
-                    <option value="yearly">Yearly subscription</option>
+                    <option value="">Select Type</option> 
+                    @php  $pakage_type = config('enums.pakageType');    @endphp
+                    @foreach ($pakage_type as $key=>$list)
+                     <option @if($key == $package['type'] or $key == old('type')) selected="selected" @endif value="{{ $key }}">{{$list}}</option>
+                    @endforeach
                   </select>
                   {!! $errors->first('type', '<p class="help-block">:message</p>') !!}
                 </div>
                 <div class="form-group {{ $errors->has('query_limit') ? 'has-error' : ''}}">
                   <label for="query_limit">Query Limit</label>
-                  <input type="text" class="form-control" name="query_limit" id="query_limit" placeholder="Query Limit">
+                  <input type="text" class="form-control" name="query_limit" id="query_limit" value="{{old('query_limit', $package->query_limit) }}"  placeholder="Query Limit">
                   {!! $errors->first('query_limit', '<p class="help-block">:message</p>') !!}
                 </div> 
                 <div class="form-group {{ $errors->has('price') ? 'has-error' : ''}}">

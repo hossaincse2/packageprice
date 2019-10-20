@@ -51,22 +51,15 @@ class IndexController extends Controller
     public function store($id = null, PackageRequest $request, PackageInterface $package, Package $packageEloquent, ActivityLogInterface $activityInterFace)
     {
         $message = "";
-        //dd($request->all());
-        try {
+         try {
             if ($request->isMethod("POST")) {
                 $requestExcept = $request->except(['save', '_token']);
-                //dd($requestExcept);
-                //print_r($requestExcept);   
-                if ($id) {
+                  if ($id) {
                     $log_title = "Edit Package";
                     $message = "Package Updated Successfully!";
                     $packageEloquent = $package->find($id);
 
-                    $ArrayByID = $packageEloquent->toArray();
-
-                   // dd($ArrayByID);
-
-                    //echo $oldvalueNewvalue;exit;
+                    $ArrayByID = $packageEloquent->toArray(); 
 
                     if ($packageEloquent->id == $id)
                         $data = $packageEloquent->update($request->all());
@@ -74,8 +67,6 @@ class IndexController extends Controller
                     $ArrayByID = "";
                     $log_title = "Add Package"; 
                     $packageEloquent->fill($request->all());
-                     //dd($packageEloquent);
-                    //print_r($companyEloquent);exit;
                     $data = $package->save($packageEloquent);
                     $message = "Package Added Successfully!";
                 }
@@ -103,40 +94,7 @@ class IndexController extends Controller
             throw $error;
         }
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+ 
 
     /**
      * Remove the specified resource from storage.
@@ -144,8 +102,32 @@ class IndexController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, PackageInterface $package)
     {
-        //
+        try {
+            if ($id) {
+
+                /** @var Unit $unit */
+                $package = $package->find($id);
+                $response = $package->delete();
+                if ($response) {
+                    $message = "Data Deleted Successfully!";
+                    Session::flash('m-class', 'alert-success');
+                    Session::flash('message', $message);
+                    return redirect()->route('package');
+                }
+            } else {
+                $message = "Data does not deleted Successfully!";
+                Session::flash('m-class', 'alert-danger');
+                Session::flash('message', $message);
+
+                return redirect()->route('package');
+            }
+        } catch (\Exception $e) {
+            $message = $e->getMessage();
+            Session::flash('m-class', 'alert-danger');
+            Session::flash('message', $message);
+            return redirect()->route('package');
+        }
     }
 }
