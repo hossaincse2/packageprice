@@ -59,6 +59,10 @@ Route::group(['middleware' => 'auth'], function () {
          //Reports 
          Route::get('user-package-reports','Admin\Users\IndexController@packageReport')->name('user-package-reports');
 
+         //Activity Logs
+        Route::get('audit-logs', 'Admin\ActivityLog\AuditLogsController@index')->name('audit-logs');
+        Route::get('error-logs', 'Admin\ActivityLog\ErrorLogsController@index')->name('error-logs');
+
         // Audit Logs (22-05-2019, Created By Rajan Bhatta)
 
         Route::get('report/audit-log', 'Admin\ActivityLog\AuditLogsController@index')->name('audit-log');
