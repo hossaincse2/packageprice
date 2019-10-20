@@ -19,9 +19,9 @@ class IndexController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(PackageInterface $package)
     {
-        return view('admin.package.index');
+        return view('admin.package.index',['data' => $package->findAll()]);
     }
 
     /**
@@ -83,19 +83,19 @@ class IndexController extends Controller
                 if ($data) {
                     $log_type = "audit_log";
 
-                    //$activityInterFace->dataSave($id, $requestExcept, $ArrayByID, $log_title, $log_type);
+                    $activityInterFace->dataSave($id, $requestExcept, $ArrayByID, $log_title, $log_type);
 
                     Session::flash('m-class', 'alert-success');
                     Session::flash('message', $message);
 
-                    return redirect()->route('admin/package');
+                    return redirect()->route('package');
                 }
             }
         } catch (\Exception $e) {
             $dBmessage = $e->getMessage();
             $message = "Something went wrong please try again!";
             $log_type = "error_log";
-           // $activityInterFace->dataSave($id = "", $dBmessage, $ArrayByID = "", $log_title, $log_type);
+            $activityInterFace->dataSave($id = "", $dBmessage, $ArrayByID = "", $log_title, $log_type);
 
             $error = \Illuminate\Validation\ValidationException::withMessages([
                         'exception' => [$message]

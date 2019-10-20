@@ -144,6 +144,26 @@
 
 @section('adminlte_js')
     <script src="{{ asset('vendor/adminlte/dist/js/adminlte.min.js') }}"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
     @stack('js')
+        <script>
+        $(document).ready(function(){
+            displayDatatable = function() {
+                $('.display').DataTable({
+                    "order": [],
+                    dom: 'Blfrtip',
+                    "lengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
+                    buttons: [
+                        {extend: 'copy', exportOptions: {columns: ':not(.action)'}},
+                        {extend: 'csv', exportOptions: {columns: ':not(.action)'}},
+                        {extend: 'excel', exportOptions: {columns: ':not(.action)'}},
+                        {extend: 'pdf', exportOptions: {columns: ':not(.action)'}},
+                        {extend: 'print', exportOptions: {columns: ':not(.action)'}}
+                    ]
+                });
+            }
+            displayDatatable();
+        })
+    </script>
     @yield('js')
 @stop

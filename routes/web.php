@@ -47,8 +47,21 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/admin/order-reports', 'Admin\Order\IndexController@order_reports');
 
         //Activity Logs
-        Route::get('/admin/order', 'Admin\ActivityLog\IndexController@auditLog');
-        Route::get('/admin/order-reports', 'Admin\ActivityLog\IndexController@errorLog');
+        Route::get('audit-logs', 'Admin\ActivityLog\AuditLogsController@index')->name('audit-logs');
+        Route::get('error-logs', 'Admin\ActivityLog\ErrorLogsController@index')->name('error-logs');
+
+        // Audit Logs (22-05-2019, Created By Rajan Bhatta)
+
+        Route::get('report/audit-log', 'Admin\ActivityLog\AuditLogsController@index')->name('audit-log');
+        Route::get('report/audit-log-ajax', 'Admin\ActivityLog\AuditLogsController@ajax')->name('audit-log-ajax');
+        Route::get('report/audit-log-print', 'Admin\ActivityLog\AuditLogsController@_print')->name('audit-log-print');
+
+
+        // Error Logs (22-05-2019, Created By Rajan Bhatta)
+
+        Route::get('report/error-log', 'Admin\ActivityLog\ErrorLogsController@index')->name('error-log');
+        Route::get('report/error-log-ajax', 'Admin\ActivityLog\ErrorLogsController@ajax')->name('error-log-ajax');
+        Route::get('report/error-log-print', 'Admin\ActivityLog\ErrorLogsController@_print')->name('error-log-print');
 
     });
 

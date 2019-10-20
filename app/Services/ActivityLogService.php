@@ -177,7 +177,7 @@ class ActivityLogService implements ActivityLogInterface {
 
     public function auditLogDescription($id, $requestExcept, $ArrayDataByID) {
 
-        
+        $NewValue='';
         if ($id) {
             $changeArray = array_diff_assoc($requestExcept, $ArrayDataByID); // only unique value return  [activated_at => 2019-10-02, issued_at => 2019-10-02]
             $changeKeys = array_keys($changeArray); // only key value return   [0 => activated_at, 1=> issued_at]

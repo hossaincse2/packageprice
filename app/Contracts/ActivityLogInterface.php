@@ -16,9 +16,11 @@ use App\Models\ActivityLog;
  */
 interface ActivityLogInterface {
     //put your code here
-    public function find($id);
-    public function findBy($where);
-    public function findAll();
-    public function save(ActivityLog $activityLog);
-    public function delete($id);
+    public function dataSave($id, $log_txt, $ArrayDataByID, $log_title, $log_type);
+
+    public function allAuditLogs($search = array());
+
+    public function allErrorLogs($search = array());
+
+    public function auditLogDescription($id, $requestExcept, $companyArray);
 }

@@ -45,7 +45,7 @@
                 <div class="form-group {{ $errors->has('type') ? 'has-error' : ''}}">
                   <label for="type">Type</label>
                   <select class="form-control" name="type" id="type">
-                    <!-- <option value="">Select Type</option> -->
+                    <option value="">Select Type</option>
                     <option value="free">Free</option>
                     <option value="fixed">One-time purchase</option>
                     <option value="monthly">Monthly subscription</option>

@@ -179,12 +179,12 @@ return [
         ],
         [
             'text' => 'Audit Log',
-            'url'  => 'admin/auditlog',
+            'url'  => 'admin/audit-logs',
             'icon' => 'fas fa-fw fa-user',
         ], 
         [
             'text' => 'Error Log',
-            'url'  => 'admin/auditlog',
+            'url'  => 'admin/error-logs',
             'icon' => 'fas fa-fw fa-user',
         ], 
         ['header' => 'account_settings'],

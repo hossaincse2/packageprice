@@ -26,6 +26,7 @@ class PackageRequest extends FormRequest
      public function rules(Request $request) {
         return [
                'package_name' => 'required',
+               'type' => 'required',
                'query_limit' => 'required|numeric',
                'price' => 'required|numeric',
          ];
@@ -38,6 +39,7 @@ class PackageRequest extends FormRequest
     public function messages() {
         return [
             'package_name.required' => 'Packages name is required!',
+            'type.required' => 'Type name is required!',
             'query_limit.required' => 'Query Limit is required!',
             'price.required' => 'Price is required!',
          ];
