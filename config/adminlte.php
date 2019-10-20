@@ -173,8 +173,8 @@ return [
         ],
         ['header' => 'Reports'],
         [
-            'text' => 'Total Orders',
-            'url'  => 'admin/orderReports',
+            'text' => 'User Package Report',
+            'url'  => 'admin/user-package-reports',
             'icon' => 'fas fa-fw fa-user',
         ],
         [

@@ -1,7 +1,7 @@
 
 
 @section('htmlheader_title')
-ERROR LOG REPORT
+ORDER REPORT
 @endsection
 
 
@@ -13,11 +13,12 @@ ERROR LOG REPORT
             <table border="0" align="center" width="921" style="text-align:center;">
 
                 <tr>
-                    <td><strong>ERROR LOG REPORT </strong></td>
+                    <td><strong>Order REPORT </strong></td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>                
-                </tr> 
+                </tr>
+ 
                 @if(isset($request['start_at']))
                 <tr>        
                     <td><strong>Date</strong>: {{$request['start_at']}} To {{$request['end_at']}}</td>

@@ -11,9 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// use Symfony\Component\Routing\Route;
+
+Route::get('/', 'Frontend\Home\IndexController@index')->name('welcome');
 
 Auth::routes();
 
@@ -26,6 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
     // Dashoboard 
     Route::get('/admin/dashboard', 'Admin\Dashboard\IndexController@index');
     Route::get('/admin/profile', 'Admin\Dashboard\IndexController@profile');
+    
     
     
 
@@ -44,16 +49,15 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('delete-package/{id}', 'Admin\Package\IndexController@destroy')->name('delete-package');
 
          // Users 
-        Route::get('/admin/users', 'Admin\Users\IndexController@index');
-        Route::get('/admin/changePassword', 'Admin\Users\IndexController@changePassword');
+        Route::get('users', 'Admin\Users\IndexController@index')->name('users');
+        Route::get('change-password', 'Admin\Users\IndexController@changePassword')->name('change-password');
 
         //Order
-        Route::get('/admin/orders', 'Admin\Order\IndexController@index');
-        Route::get('/admin/order-reports', 'Admin\Order\IndexController@order_reports');
+        Route::get('orders', 'Admin\Order\IndexController@index')->name('orders');
+        Route::get('order-reports', 'Admin\Order\IndexController@order_reports')->name('order-reports');
 
-        //Activity Logs
-        Route::get('audit-logs', 'Admin\ActivityLog\AuditLogsController@index')->name('audit-logs');
-        Route::get('error-logs', 'Admin\ActivityLog\ErrorLogsController@index')->name('error-logs');
+         //Reports 
+         Route::get('user-package-reports','Admin\Users\IndexController@packageReport')->name('user-package-reports');
 
         // Audit Logs (22-05-2019, Created By Rajan Bhatta)
 

@@ -14,7 +14,7 @@ class IndexController extends Controller
      */
      public function index()
      {
-         return view('admin.order.index');
+         return view('admin.order.index',['data' => []]);
      }
      public function order_reports()
      {

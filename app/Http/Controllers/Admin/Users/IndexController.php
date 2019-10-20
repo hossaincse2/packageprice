@@ -31,11 +31,15 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return view('admin.users.index');
+        return view('admin.users.index', ['data' => []]);
     }
 
     public function changePassword() {
         return view('admin.users.changePassword');
+    }
+
+    public function packageReport(){
+        return view('admin.reports.user-package', ['data' => []]);
     }
 
 }

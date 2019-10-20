@@ -46,7 +46,7 @@
                   <label for="type">Type</label>
                   <select class="form-control" name="type" id="type">
                     <option value="">Select Type</option> 
-                    @php  $pakage_type = config('enums.pakageType');    @endphp
+                    @php  $pakage_type = config('enums.packageType');    @endphp
                     @foreach ($pakage_type as $key=>$list)
                      <option @if($key == $package['type'] or $key == old('type')) selected="selected" @endif value="{{ $key }}">{{$list}}</option>
                     @endforeach

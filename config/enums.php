@@ -2,7 +2,7 @@
 
 return [
 
-    'pakageType' => [
+    'packageType' => [
         'free' => 'Free',
         'fixed' => 'One-time purchase',
         'monthly' => 'Monthly subscription',
