@@ -18,6 +18,11 @@
 // use Symfony\Component\Routing\Route;
 
 Route::get('/', 'Frontend\Home\IndexController@index')->name('welcome');
+// Route::get('checkpout-strip', 'Frontend\Payment\IndexController@checkoutStripe')->name('checkpout-strip');
+Route::post('payment/success', 'Frontend\Payment\IndexController@stripePost')->name('stripe.post');
+
+Route::get('checkpout-paypal', 'Frontend\Payment\IndexController@checkoutPaypal')->name('checkpout-paypal');
+Route::get('/payment/success', 'Frontend\Payment\IndexController@paymentSuccess')->name('payment-success');
 
 Auth::routes();
 
@@ -27,28 +32,29 @@ Route::get('/home', function() {
 
 Route::group(['middleware' => 'auth'], function () {
 
-    // Dashoboard 
+    // Dashoboard
     Route::get('/admin/dashboard', 'Admin\Dashboard\IndexController@index');
     Route::get('/admin/profile', 'Admin\Dashboard\IndexController@profile');
-    
-    
-    
+
+
+
+
 
     // ........................ Privilege For Admin ......................................................................
 
     Route::group(['prefix' => 'admin','middleware' => 'role:admin'], function() {
 
-        // Package 
+        // Package
         Route::get('package', 'Admin\Package\IndexController@index')->name('package');
         Route::get('add-package', 'Admin\Package\IndexController@create')->name('add-package');
         Route::post('add-package', 'Admin\Package\IndexController@store')->name('add-package');
-        
+
         Route::get('add-package/{id}', 'Admin\Package\IndexController@create')->name('add-edit-package');
         Route::post('add-package/{id}', 'Admin\Package\IndexController@store')->name('store-package');
 
         Route::get('delete-package/{id}', 'Admin\Package\IndexController@destroy')->name('delete-package');
 
-         // Users 
+         // Users
         Route::get('users', 'Admin\Users\IndexController@index')->name('users');
         Route::get('change-password', 'Admin\Users\IndexController@changePassword')->name('change-password');
 
@@ -56,7 +62,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('orders', 'Admin\Order\IndexController@index')->name('orders');
         Route::get('order-reports', 'Admin\Order\IndexController@order_reports')->name('order-reports');
 
-         //Reports 
+         //Reports
          Route::get('user-package-reports','Admin\Users\IndexController@packageReport')->name('user-package-reports');
 
          //Activity Logs
@@ -75,6 +81,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('report/error-log', 'Admin\ActivityLog\ErrorLogsController@index')->name('error-log');
         Route::get('report/error-log-ajax', 'Admin\ActivityLog\ErrorLogsController@ajax')->name('error-log-ajax');
         Route::get('report/error-log-print', 'Admin\ActivityLog\ErrorLogsController@_print')->name('error-log-print');
+
+
 
     });
 
