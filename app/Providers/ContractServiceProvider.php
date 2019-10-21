@@ -6,10 +6,12 @@ use Illuminate\Support\ServiceProvider;
 
 //Interface
 use App\Contracts\PackageInterface;
+use App\Contracts\OrderInterface;
 use App\Contracts\ActivityLogInterface;
 
 //Repository
 use App\Repositories\PackageRepo;
+use App\Repositories\OrderReop;
 use App\Services\ActivityLogService;
 
 class ContractServiceProvider extends ServiceProvider
@@ -22,6 +24,7 @@ class ContractServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(PackageInterface::class, PackageRepo::class);
+        $this->app->bind(OrderInterface::class, OrderReop::class);
         $this->app->bind(ActivityLogInterface::class, ActivityLogService::class);
     }
 

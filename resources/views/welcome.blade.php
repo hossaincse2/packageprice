@@ -28,14 +28,14 @@
                 </ul>
                 <div class="tab-content" id="myClassicTabContent">
                 <div class="tab-pane fade active show" id="profile-classic" role="tabpanel" aria-labelledby="profile-tab-classic">
-                <table class="table table-borderless"> 
+                <table class="table table-borderless">
                     <tbody>
                       @foreach( $data as $key=>$package)
                         @if($package->type == 'free')
                           <tr class="rows">
                             <th scope="row">
                               <div class="custom-control custom-radio">
-                                  <input type="radio" class="custom-control-input" id="defaultGroupExample{{ $key }}" value="{{ $package->id }}" name="groupOfDefaultRadios" checked>
+                                  <input type="radio" class="custom-control-input" id="defaultGroupExample{{ $key }}" value="{{ $package->id }}" data-price="{{ $package->price }}" name="groupOfDefaultRadios" checked>
                                   <label class="custom-control-label" for="defaultGroupExample{{ $key }}">{{ $package->query_limit }}</label>
                               </div>
                             </th>
@@ -49,12 +49,12 @@
                             <td>$ {{ number_format($package->price, 2) }}</td>
                           </tr>
                           @endif
-                        @endforeach 
+                        @endforeach
                     </tbody>
                     </table>
                 </div>
                 <div class="tab-pane fade" id="follow-classic" role="tabpanel" aria-labelledby="follow-tab-classic">
-                <table class="table table-borderless"> 
+                <table class="table table-borderless">
                     <tbody>
                       @foreach( $data as $key=>$package)
                         @if($package->type == 'fixed')
@@ -75,12 +75,12 @@
                             <td>$ {{ number_format($package->price, 2) }}</td>
                           </tr>
                           @endif
-                        @endforeach 
+                        @endforeach
                     </tbody>
                     </table>
                 </div>
                 <div class="tab-pane fade" id="contact-classic" role="tabpanel" aria-labelledby="contact-tab-classic">
-                <table class="table table-borderless"> 
+                <table class="table table-borderless">
                     <tbody>
                       @foreach( $data as $key=>$package)
                         @if($package->type == 'monthly')
@@ -101,12 +101,12 @@
                             <td>$ {{ number_format($package->price, 2) }}</td>
                           </tr>
                           @endif
-                        @endforeach 
+                        @endforeach
                     </tbody>
                     </table>
                 </div>
                 <div class="tab-pane fade" id="awesome-classic" role="tabpanel" aria-labelledby="awesome-tab-classic">
-                <table class="table table-borderless"> 
+                <table class="table table-borderless">
                     <tbody>
                       @foreach( $data as $key=>$package)
                         @if($package->type == 'yearly')
@@ -127,7 +127,7 @@
                             <td>$ {{ number_format($package->price, 2) }}</td>
                           </tr>
                           @endif
-                        @endforeach 
+                        @endforeach
                     </tbody>
                     </table>
                 </div>
@@ -135,7 +135,7 @@
 
                 </div>
                 <div class="text-center">
-                <!-- Provides extra visual weight and identifies the primary action in a set of buttons --> 
+                <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
                 {{-- <button type="button" class="btn btn-warning" id="card-button" onclick="checkout('checkpout-strip')">Buy With Credit Card</button> --}}
                 <button type="button" class="btn btn-warning" id="card-button" data-toggle="modal" data-target="#myModal">Buy With Credit Card</button>
                     <span>Or</span>
@@ -152,7 +152,7 @@
         <!-- Modal -->
           <div class="modal fade" id="myModal" role="dialog">
             <div class="modal-dialog">
-            
+
               <!-- Modal content-->
               <div class="modal-content">
                 <div class="modal-header">
@@ -165,23 +165,23 @@
                                                     data-stripe-publishable-key="{{ env('STRIPE_KEY') }}"
                                                     id="payment-form">
                         @csrf
-                  
+
                              <div class='col-xs-6 form-group required'>
                                 <label class='control-label'>Name on Card</label> <input
                                     class='form-control'  type='text'>
                             </div>
-   
+
                              <div class='col-xs-6 form-group required'>
                                 <label class='control-label'>Card Number</label> <input
                                     autocomplete='off' class='form-control card-number' size='20'
                                     type='text'>
                             </div>
-   
+
                         <div class='form-row row'>
                             <div class='col-xs-12 col-md-4 form-group cvc required'>
                                 <label class='control-label'>CVC</label> <input autocomplete='off'
 
- 
+
                                     class='form-control card-cvc' placeholder='ex. 311' size='4'
                                     type='text'>
                             </div>
@@ -196,7 +196,7 @@
                                     type='text'>
                             </div>
                         </div>
-  
+
                         {{-- <div class='form-row row'>
                             <div class='col-md-12 error form-group hide'>
                                 <div class='alert-danger alert'>Please correct the errors and try
@@ -205,25 +205,25 @@
                         </div> --}}
 
                         <input class='form-control packageId' name="package_id" type='hidden'>
-  
+
                         <div class="row">
                             <div class="col-md-12">
                                 <button class="btn btn-primary btn-lg btn-block paynow" type="submit">  Pay Now ($<span>100</span>)  </button>
                             </div>
                         </div>
-                          
+
                     </form>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
               </div>
-              
+
             </div>
           </div>
 
         @endsection
-      
+
         @section('js')
 
        <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
@@ -238,21 +238,21 @@
                       //console.log(package_id);
                       //$(this).attr("checked", returnVal);
                   }
-                  $('#textbox1').val($(this).is(':checked'));        
+                  $('#textbox1').val($(this).is(':checked'));
               });
             function checkout($url) {
                // var data = $("#auditLogForm").serialize();
                     console.log(package_id);
                    var data = {
                           'package_id':package_id
-                     };                 
+                     };
                 $.ajax(
                         {
                             type: 'GET',
                             url: $url,
                             data: data,
                             //datatype: json,
-                            success: function(data) { 
+                            success: function(data) {
                               console.log(data);
                                 //$("#onLoadData").html(data);
                                 if($url == 'checkpout-paypal'){
@@ -261,7 +261,7 @@
                                     $("#onLoadData").html(data);
                                     $('#myModal').modal('show');
                                 }
-                                 
+
                              }
                         }
                 );
@@ -286,7 +286,7 @@
                   $errorMessage = $form.find('div.error'),
                   valid         = true;
                   $errorMessage.addClass('hide');
-          
+
                   $('.has-error').removeClass('has-error');
               $inputs.each(function(i, el) {
                 var $input = $(el);
@@ -296,7 +296,7 @@
                   e.preventDefault();
                 }
               });
-            
+
               if (!$form.data('cc-on-file')) {
                 e.preventDefault();
                 Stripe.setPublishableKey($form.data('stripe-publishable-key'));
@@ -307,9 +307,9 @@
                   exp_year: $('.card-expiry-year').val()
                 }, stripeResponseHandler);
               }
-            
+
             });
-            
+
             function stripeResponseHandler(status, response) {
                   if (response.error) {
                       $('.error')
@@ -325,8 +325,8 @@
                       $form.get(0).submit();
                   }
               }
-            
+
           });
       </script>
-   
+
         @stop

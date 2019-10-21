@@ -4,17 +4,20 @@ namespace App\Http\Controllers\Frontend\Payment;
 
 use App\Http\Controllers\Controller;
 use App\Contracts\PackageInterface;
+use App\Contracts\OrderInterface;
 use Illuminate\Http\Request;
 use Srmklive\PayPal\Services\ExpressCheckout;
 use Laravel\Cashier\Cashier;
+use Illuminate\Contracts\Auth\Guard;
 use Session;
 use Stripe;
 
 class IndexController extends Controller
 {
+    private $auth;
     // public function checkoutStripe(PackageInterface $package){
 
-    //     $package_id = $_GET['package_id']; 
+    //     $package_id = $_GET['package_id'];
     //     $packageDetails = $package->find($package_id);
 
     //     return view('payment.stripe',['data' => $packageDetails]);
@@ -22,9 +25,10 @@ class IndexController extends Controller
     // }
 
 
-    public function stripePost(Request $request, PackageInterface $package)
+    public function stripePost(Request $request, PackageInterface $package, OrderInterface $order)
     {
         //dd($request->stripeToken);
+
          $packageDetails = $package->find($request->package_id);
 
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
@@ -32,15 +36,22 @@ class IndexController extends Controller
                 "amount" => 100 * $packageDetails->price,
                 "currency" => "usd",
                 "source" => $request->stripeToken,
-                "description" => "Test payment from VoidCoders." 
+                "description" => "Test payment from VoidCoders."
         ]);
-  
+
+        $orderData = [
+
+        ];
+        $userId = $this->auth->user()->id;
+
+       // $order->save();
+
         Session::flash('success', 'Payment successful!');
-          
+
         return redirect('payment/success');
     }
 
-    public function checkoutPaypal(PackageInterface $package){
+    public function checkoutPaypal(PackageInterface $package, OrderInterface $order){
 
         $package_id = $_GET['package_id'];
         $packageDetails = $package->find($package_id);
@@ -64,7 +75,7 @@ class IndexController extends Controller
 
             $provider = new ExpressCheckout;      // To use express checkout.
            //dd($packageDetails);
-           $provider->setCurrency('USD')->setExpressCheckout($data); 
+           $provider->setCurrency('USD')->setExpressCheckout($data);
            $response = $provider->setExpressCheckout($data);
 
          // Use the following line when creating recurring payment profiles (subscriptions)

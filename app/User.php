@@ -5,11 +5,10 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Cashier\Billable;
 
 class User extends Authenticatable
 {
-    use Notifiable,Billable;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -39,7 +38,7 @@ class User extends Authenticatable
     ];
 
     public function package() {
-        return $this->belongsTo(Models\Package::class);
+        return $this->hasOne(Models\Package::class);
     }
 
     public function factory() {

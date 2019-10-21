@@ -17,4 +17,12 @@ class Package extends Model
      protected $fillable = [
         'package_name', 'type', 'query_limit','price','api_key'
     ];
+
+    public function order() {
+        return $this->hasOne(\App\Models\Order::class);
+    }
+
+    public function user() {
+        return $this->belongsTo(\App\User::class);
+    }
 }
