@@ -18,4 +18,9 @@ class IndexController extends Controller
 
         return view('package',[ 'data' => $package->findAll()]);
     }
+
+    public function whois(PackageInterface $package){
+
+        return view('whois',[ 'data' => $package->findAll()]);
+    }
 }

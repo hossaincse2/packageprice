@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Frontend
     Route::get('package', 'Frontend\Home\IndexController@package')->name('package');
+    Route::get('whois', 'Frontend\Home\IndexController@whois')->name('whois');
     Route::post('payment/success', 'Frontend\Payment\IndexController@stripePost')->name('stripe.post');
     Route::get('checkpout-paypal', 'Frontend\Payment\IndexController@checkoutPaypal')->name('checkpout-paypal');
     Route::get('/payment/success', 'Frontend\Payment\IndexController@paymentSuccess')->name('payment-success');
