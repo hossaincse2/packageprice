@@ -38,7 +38,11 @@ class User extends Authenticatable
     ];
 
     public function package() {
-        return $this->hasOne(Models\Package::class);
+        return $this->hasMany(Models\Package::class);
+    }
+
+    public function order() {
+        return $this->hasMany(Models\Order::class);
     }
 
     public function factory() {

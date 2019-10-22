@@ -8,8 +8,9 @@
 
 namespace App\Repositories;
 
-use App\Models\Order;
+use App\Models\UserPackageQuery;
 use App\Contracts\OrderInterface;
+use App\Contracts\PackageQueryInterface;
 use Illuminate\Contracts\Auth\Guard;
 use Mockery\CountValidator\Exception;
 
@@ -18,27 +19,27 @@ use Mockery\CountValidator\Exception;
  *
  * @author Pavel
  */
-class OrderReop implements OrderInterface {
+class PackageQueryReop implements PackageQueryInterface {
 
-    private $OrderEloquent;
+    private $PackageQueryEloquent;
     private $auth;
 
     /**
-     * @param Order $order
+     * @param package_query $order
      * @param Guard $auth
      */
-    public function __construct(Order $order, Guard $auth) {
-        $this->OrderEloquent = $order;
+    public function __construct(UserPackageQuery $package_query, Guard $auth) {
+        $this->PackageQueryEloquent = $package_query;
         $this->auth = $auth;
     }
 
     /**
      * @param integer $id
-     * @return order;
+     * @return package_query;
      */
     public function find($id) {
         try {
-            return $this->OrderEloquent->findOrFail($id);
+            return $this->PackageQueryEloquent->findOrFail($id);
         }
         catch (\Exception $e) {
             return "no result found";
@@ -47,26 +48,26 @@ class OrderReop implements OrderInterface {
 
 
     public function findBy($where) {
-        return $this->OrderEloquent->where($where)->all();
+        return $this->PackageQueryEloquent->where($where)->all();
     }
 
     public function countBy($where) {
-        return $this->OrderEloquent->groupBy($where)->count();
+        return $this->PackageQueryEloquent->groupBy($where)->count();
     }
 
     public function findAll() {
-        return $this->OrderEloquent->all();
+        return $this->PackageQueryEloquent->all();
     }
 
     /**
-     * @param order $order
-     * @return order|boolean
+     * @param package_query $order
+     * @return package_query|boolean
      */
-    public function save(Order $order) {
+    public function save(UserPackageQuery $package_query) {
         //$order->user_id = $this->auth->user()->id;
         //$order->is_active = 1;
-        if ($order->save())
-            return $order;
+        if ($package_query->save())
+            return $package_query;
 
         return false;
     }

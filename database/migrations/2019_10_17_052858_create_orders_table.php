@@ -15,10 +15,12 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('order_number');
+            $table->string('order_number');
             $table->string('payment_method');
-            $table->unsignedBigInteger('user_id')->nullable(); 
-            $table->unsignedBigInteger('package_id')->nullable(); 
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('package_id')->nullable();
+            $table->integer('query_count')->nullable();
+            $table->enum('status', ['active', 'expired','limited']);
             $table->timestamps();
 
             $table->foreign('user_id')
@@ -26,7 +28,7 @@ class CreateOrdersTable extends Migration
 
             $table->foreign('package_id')
             ->references('id')->on('packages');
-            
+
         });
     }
 

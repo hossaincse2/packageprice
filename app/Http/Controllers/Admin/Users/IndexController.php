@@ -21,7 +21,7 @@ class IndexController extends Controller
      public function __construct(Guard $auth) {
          $this->middleware('auth');
          $this->auth = $auth;
-        
+
      }
 
      /**
@@ -38,8 +38,5 @@ class IndexController extends Controller
         return view('admin.users.changePassword');
     }
 
-    public function packageReport(){
-        return view('admin.reports.user-package', ['data' => []]);
-    }
 
 }

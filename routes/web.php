@@ -19,10 +19,6 @@
 
 Route::get('/', 'Frontend\Home\IndexController@index')->name('welcome');
 // Route::get('checkpout-strip', 'Frontend\Payment\IndexController@checkoutStripe')->name('checkpout-strip');
-Route::post('payment/success', 'Frontend\Payment\IndexController@stripePost')->name('stripe.post');
-
-Route::get('checkpout-paypal', 'Frontend\Payment\IndexController@checkoutPaypal')->name('checkpout-paypal');
-Route::get('/payment/success', 'Frontend\Payment\IndexController@paymentSuccess')->name('payment-success');
 
 Auth::routes();
 
@@ -32,12 +28,15 @@ Route::get('/home', function() {
 
 Route::group(['middleware' => 'auth'], function () {
 
+    // Frontend
+    Route::get('package', 'Frontend\Home\IndexController@package')->name('package');
+    Route::post('payment/success', 'Frontend\Payment\IndexController@stripePost')->name('stripe.post');
+    Route::get('checkpout-paypal', 'Frontend\Payment\IndexController@checkoutPaypal')->name('checkpout-paypal');
+    Route::get('/payment/success', 'Frontend\Payment\IndexController@paymentSuccess')->name('payment-success');
+
     // Dashoboard
     Route::get('/admin/dashboard', 'Admin\Dashboard\IndexController@index');
     Route::get('/admin/profile', 'Admin\Dashboard\IndexController@profile');
-
-
-
 
 
     // ........................ Privilege For Admin ......................................................................
@@ -60,10 +59,11 @@ Route::group(['middleware' => 'auth'], function () {
 
         //Order
         Route::get('orders', 'Admin\Order\IndexController@index')->name('orders');
-        Route::get('order-reports', 'Admin\Order\IndexController@order_reports')->name('order-reports');
+        Route::get('package_queries', 'Admin\Order\IndexController@packageQueries')->name('package_queries');
+       // Route::get('order-reports', 'Admin\Order\IndexController@order_reports')->name('order-reports');
 
          //Reports
-         Route::get('user-package-reports','Admin\Users\IndexController@packageReport')->name('user-package-reports');
+         Route::get('user-package-reports','Admin\Order\IndexController@order_reports')->name('user-package-reports');
 
          //Activity Logs
         Route::get('audit-logs', 'Admin\ActivityLog\AuditLogsController@index')->name('audit-logs');

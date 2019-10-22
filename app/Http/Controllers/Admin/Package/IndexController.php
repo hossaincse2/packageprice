@@ -8,6 +8,7 @@ use App\Contracts\PackageInterface;
 use App\Contracts\ActivityLogInterface;
 use App\Http\Requests\PackageRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use Session;
 
@@ -59,13 +60,13 @@ class IndexController extends Controller
                     $message = "Package Updated Successfully!";
                     $packageEloquent = $package->find($id);
 
-                    $ArrayByID = $packageEloquent->toArray(); 
+                    $ArrayByID = $packageEloquent->toArray();
 
                     if ($packageEloquent->id == $id)
                         $data = $packageEloquent->update($request->all());
                 } else {
                     $ArrayByID = "";
-                    $log_title = "Add Package"; 
+                    $log_title = "Add Package";
                     $packageEloquent->fill($request->all());
                     $data = $package->save($packageEloquent);
                     $message = "Package Added Successfully!";
@@ -94,7 +95,7 @@ class IndexController extends Controller
             throw $error;
         }
     }
- 
+
 
     /**
      * Remove the specified resource from storage.

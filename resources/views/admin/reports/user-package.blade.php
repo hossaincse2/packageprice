@@ -3,16 +3,16 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Customer Order</h1>
+    <h1>User Package Queries</h1>
 @stop
 
 @section('content')
 <div class="row">
-        <div class="col-xs-12">  
+        <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Order List Show</h3>
-            </div> 
+              <h3 class="box-title">User Package Queries Show</h3>
+            </div>
             <!-- /.box-header -->
             <div class="box-body">
               <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -31,37 +31,53 @@
                    <thead>
                     <tr role="row">
                       <th>SL</th>
+                      <th>User Name</th>
                       <th>Package Name</th>
-                      <th>Type</th>
+                      <th>Package Type</th>
                       <th>Query Limit</th>
-                      <th>Price</th>
-                      <th>Api Key</th>
+                      <th>Query Used</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Total Used Date</th>
+                      <th>Status</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                 <tbody>
-                  @php $i=1; @endphp
-                  @foreach($data as $package) 
+                  @php $i=1; $count=0; @endphp
+                  @foreach($data as $order)
+                  {{-- @if ($query->user_id == $query->userPackageQuery->user_id && $query->package_id == $query->userPackageQuery->package_id)
+                   {{  $count++  }}
+                  @endif --}}
                     <tr role="row" class="odd">
                       <td class="sorting_1">{{ $i++ }}</td>
-                      <td class="sorting_1">{{ $package->package_name }}</td>
-                      <td>{{ $package->type }}</td>
-                      <td>{{ $package->query_limit }}</td>
-                      <td>{{ $package->price }}</td>
-                      <td>{{ $package->api_key }}</td>
-                      <td> <a href="{{ url('admin/add-package/'.$package->id) }}">Edit</a> | <a href="{{ url('admin/delete-package/'.$package->id) }}">Delete</a></td>
+                      <td>{{ $order->user->name }}</td>
+                      <td>{{ $order->package->package_name }}</td>
+                      <td>{{ $order->package->type }}</td>
+                      <td>{{ $order->package->query_limit }} </td>
+                      <td>{{ $order->query_count }}</td>
+                      <td>{{ $order->created_at }}</td>
+                      <td>{{ $order->created_at }}</td>
+                      <td>{{ $order->userPackageQuery == null ? '0' : $order->userPackageQuery->count() }}</td>
+                      <td>{{ $order->status }}</td>
+                      {{-- <td>{{  $query->userPackageQuery->domain_name == 30 ? 'Active' : 'Expired' }}</td> --}}
+                      <td> <a href="{{ url('admin/add-package/'.$order->id) }}">Edit</a> | <a href="{{ url('admin/delete-package/'.$order->id) }}">Delete</a></td>
                     </tr>
-                  @endforeach 
+                  @endforeach
                  </tbody>
                 <tfoot>
                 <tr>
-                  <th>SL</th>
-                  <th>Package Name</th>
-                  <th>Type</th>
-                  <th>Query Limit</th>
-                  <th>Price</th>
-                  <th>Api Key</th>
-                  <th>Action</th>
+                    <th>SL</th>
+                    <th>User Name</th>
+                    <th>Package Name</th>
+                    <th>Package Type</th>
+                    <th>Query Limit</th>
+                    <th>Query Used</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Total Used Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
                 </tr>
                 </tfoot>
               </table></div>
@@ -80,6 +96,6 @@
 @stop
 
 @section('js')
-   
+
 @stop
 

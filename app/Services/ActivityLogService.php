@@ -52,13 +52,13 @@ class ActivityLogService implements ActivityLogInterface {
             //$log_txt = preg_replace('#,(\s+|)\)#', '$1)', var_export($log_txt, true));
             //$log_txt = '' . PHP_EOL . $log_txt . ';';
              $log_txt = $this->auditLogDescription($id, $log_txt, $ArrayDataByID);
-             
+
              if($log_txt==false){
                  return false;
              }
-            
-            
-        
+
+
+
         }
 
 
@@ -181,29 +181,29 @@ class ActivityLogService implements ActivityLogInterface {
         if ($id) {
             $changeArray = array_diff_assoc($requestExcept, $ArrayDataByID); // only unique value return  [activated_at => 2019-10-02, issued_at => 2019-10-02]
             $changeKeys = array_keys($changeArray); // only key value return   [0 => activated_at, 1=> issued_at]
-                
+
           // echo count($changeKeys); exit;
-            
-  
+
+
             if(count($changeKeys)<1){
-                return false; 
+                return false;
             }
                 // [id=>1, activated_at=>2019-10-02,issued_at=>2019-10-02]   // [activated_at=>0,issued_at=>1]
-               
+
             $oldArray = array_intersect_key($ArrayDataByID, array_flip($changeKeys));  // Match value return [activated_at=>2019-10-02 00:00:00,issued_at=>2019-10-02 00:00:00]
-            
-            
+
+
             $newArray = array();
 
             foreach ($oldArray as $key => $value) {
                 $newArray["old_" . $key] = $value;
             }
 
-            $merge_array = array_merge($newArray, $changeArray); 
+            $merge_array = array_merge($newArray, $changeArray);
             $oldvalueNewValue = "";
             foreach ($merge_array as $key => $value) {
                 $oldvalueNewValue.=$key . "=" . $value . ", ";
-            } 
+            }
             return $oldvalueNewValue = rtrim($oldvalueNewValue, ', ');
         } else {
              foreach ($requestExcept as $key => $value) {

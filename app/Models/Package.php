@@ -19,10 +19,14 @@ class Package extends Model
     ];
 
     public function order() {
-        return $this->hasOne(\App\Models\Order::class);
+        return $this->hasMany(\App\Models\Order::class);
     }
 
     public function user() {
         return $this->belongsTo(\App\User::class);
+    }
+
+    public function userPackageQuery() {
+        return $this->hasMany(\App\Models\UserPackageQuery::class);
     }
 }

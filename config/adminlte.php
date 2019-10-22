@@ -169,7 +169,13 @@ return [
             'text'        => 'Users',
             'url'         => 'admin/users',
             'icon'        => 'fas fa-users',
-            'label_color' => 'success' 
+            'label_color' => 'success'
+        ],
+        [
+            'text'        => 'Package Queries',
+            'url'         => 'admin/package_queries',
+            'icon'        => 'fas fa-users',
+            'label_color' => 'success'
         ],
         ['header' => 'Reports'],
         [
@@ -181,24 +187,24 @@ return [
             'text' => 'Audit Log',
             'url'  => 'admin/audit-logs',
             'icon' => 'fas fa-fw fa-user',
-        ], 
+        ],
         [
             'text' => 'Error Log',
             'url'  => 'admin/error-logs',
             'icon' => 'fas fa-fw fa-user',
-        ], 
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
             'url'  => 'admin/profile',
             'icon' => 'fas fa-fw fa-user',
-        ], 
+        ],
         [
             'text' => 'change_password',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
-         
+
     ],
 
     /*

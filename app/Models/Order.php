@@ -14,7 +14,7 @@ class Order extends Model
      * @var array
      */
     protected $fillable = [
-        'order_number', 'payment_method', 'user_id','package_id'
+        'order_number', 'payment_method', 'user_id','package_id','query_count','status'
     ];
 
     public function package() {
@@ -23,5 +23,9 @@ class Order extends Model
 
     public function user() {
         return $this->belongsTo(\App\User::class);
+    }
+
+    public function userPackageQuery() {
+        return $this->hasOne(\App\Models\UserPackageQuery::class);
     }
 }

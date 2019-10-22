@@ -1,7 +1,7 @@
 <?php
 namespace App\Contracts;
 
-use App\Models\Order;
+use App\Models\UserPackageQuery;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,12 +14,12 @@ use App\Models\Order;
  *
  * @author pavel
  */
-interface OrderInterface {
+interface PackageQueryInterface {
     //put your code here
     public function find($id);
     public function findBy($where);
     public function countBy($where);
     public function findAll();
-    public function save(Order $order);
+    public function save(UserPackageQuery $order);
     public function delete($id);
 }
