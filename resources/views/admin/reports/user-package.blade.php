@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>User Package Queries</h1>
+    <h1>User Package Reports</h1>
 @stop
 
 @section('content')
@@ -11,7 +11,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">User Package Queries Show</h3>
+              <h3 class="box-title">User Package Reports Show</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -59,7 +59,7 @@
                       <td>{{ $order->created_at }}</td>
                       <td>{{ $order->created_at }}</td>
                       <td>{{ $order->userPackageQuery == null ? '0' : $order->userPackageQuery->count() }}</td>
-                      <td>{{ $order->status }}</td>
+                      <td><span class="label label-success">{{ $order->status }}</span></td>
                       {{-- <td>{{  $query->userPackageQuery->domain_name == 30 ? 'Active' : 'Expired' }}</td> --}}
                       <td> <a href="{{ url('admin/add-package/'.$order->id) }}">Edit</a> | <a href="{{ url('admin/delete-package/'.$order->id) }}">Delete</a></td>
                     </tr>

@@ -28,7 +28,7 @@ class IndexController extends Controller
      }
 
      public function packageQueries(){
-        $url = "admin/queries/package-queries-print";
+        $url = "admin/package-queries-print";
         return view('admin.order.reports', ['data' => [], 'url' => $url]);
     }
 
@@ -46,7 +46,7 @@ class IndexController extends Controller
         }
     } 
 
-    public function _print(Request $request, PackageQueryInterface $packageQueryInterface) {
+    public function packageQueriesPrint(Request $request, PackageQueryInterface $packageQueryInterface) {
 
         try {
             $filters = $request->all();

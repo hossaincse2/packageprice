@@ -63,6 +63,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('orders', 'Admin\Order\IndexController@index')->name('orders');
         Route::get('package_queries', 'Admin\Order\IndexController@packageQueries')->name('package_queries');
         Route::get('reports-package-query', 'Admin\Order\IndexController@packageQueriesAjax')->name('reports-package-query');
+        Route::get('package-queries-print', 'Admin\Order\IndexController@packageQueriesPrint')->name('package-queries-print');
        // Route::get('order-reports', 'Admin\Order\IndexController@order_reports')->name('order-reports');
 
          //Reports

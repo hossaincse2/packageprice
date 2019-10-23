@@ -9,9 +9,11 @@
        </span>
     </div>
     </form>
-    <li class="header">MAIN NAVIGATION</li>
+     
+    <li class="header">MAIN NAVIGATION</li> 
     <li class="{{ (request()->is('admin/dashboard')) ? 'active' : '' }}">
     <a href="/admin/dashboard"> <i class="fas fa-tachometer-alt "></i> <span> Dashboard </span> </a></li>
+    @if (Auth::User()->hasGroup('admin') )
     <li class="treeview">
         <a href="/admin/package"> <i class="fas fa-box-open "></i> <span> Packages </span> <span class="pull-right-container"> <i class="fas fa-angle-left pull-right"></i> </span> </a>
         <ul class="treeview-menu">
@@ -39,6 +41,7 @@
     <li class="{{ (request()->is('admin/error-logs')) ? 'active' : '' }}">
         <a href="/admin/error-logs"> <i class="fas fa-fw fa-user "></i> <span>  Error Log </span> </a>
     </li>
+    @endif
     <li class="header">ACCOUNT SETTINGS</li>
 
     <li class="{{ (request()->is('admin/profile')) ? 'active' : '' }}">
