@@ -63,6 +63,7 @@ public function __construct(PackageInterface $package, Order $orderEloquent, Ord
             'order_number' => HelperClass::randomNumber(),
             'payment_method' => 'Stripe',
             'package_id' => $packageDetails->id,
+            'api_key' => $packageDetails->api_key,
             'query_count' => 0,
             'status' => 'active',
             'user_id' =>  Auth::user()->id,
@@ -73,6 +74,7 @@ public function __construct(PackageInterface $package, Order $orderEloquent, Ord
         $this->orderEloquent->order_number = HelperClass::randomNumber();
         $this->orderEloquent->payment_method = 'Stripe';
         $this->orderEloquent->package_id = $packageDetails->id;
+        $this->orderEloquent->api_key = $packageDetails->api_key;
         $this->orderEloquent->user_id = Auth::user()->id;
         $this->orderEloquent->query_count = 0;
         $this->orderEloquent->status = 'active';
@@ -143,6 +145,7 @@ public function __construct(PackageInterface $package, Order $orderEloquent, Ord
                 'order_number' => HelperClass::randomNumber(),
                 'payment_method' => 'Stripe',
                 'package_id' => $packageDetails->id,
+                'api_key' => $packageDetails->api_key,
                 'query_count' => 0,
                 'status' => 'active',
                 'user_id' =>  Auth::user()->id,
@@ -153,6 +156,7 @@ public function __construct(PackageInterface $package, Order $orderEloquent, Ord
             $this->orderEloquent->order_number = HelperClass::randomNumber();
             $this->orderEloquent->payment_method = 'Stripe';
             $this->orderEloquent->package_id = $packageDetails->id;
+            $this->orderEloquent->api_key = $packageDetails->api_key;
             $this->orderEloquent->user_id = Auth::user()->id;
             $this->orderEloquent->query_count = 0;
             $this->orderEloquent->status = 'active';

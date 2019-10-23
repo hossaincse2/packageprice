@@ -31,4 +31,31 @@ class IndexController extends Controller
         $url = "admin/queries/package-queries-print";
         return view('admin.order.reports', ['data' => [], 'url' => $url]);
     }
+
+    public function packageQueriesAjax(Request $request, PackageQueryInterface $packageQueryInterface){
+        try {
+            $filters = $request->all();
+           $data = $packageQueryInterface->allPackageQuery($filters);
+           // echo "<pre>";
+            //print_r($data);
+
+//            print_r($data);die;
+            return view('admin.order.order-grid', ["data" => $data]);
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    } 
+
+    public function _print(Request $request, PackageQueryInterface $packageQueryInterface) {
+
+        try {
+            $filters = $request->all();
+            $data = $packageQueryInterface->allPackageQuery($filters);
+
+//            print_r($data);die;
+            return view('admin.order.order-print', ["data" => $data, "request" => $filters]);
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
 }

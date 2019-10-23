@@ -31,6 +31,7 @@ Route::group(['middleware' => 'auth'], function () {
     // Frontend
     Route::get('package', 'Frontend\Home\IndexController@package')->name('package');
     Route::get('whois', 'Frontend\Home\IndexController@whois')->name('whois');
+    Route::get('domain-search', 'Frontend\Home\IndexController@domainSearch')->name('domain-search');
     Route::post('payment/success', 'Frontend\Payment\IndexController@stripePost')->name('stripe.post');
     Route::get('checkpout-paypal', 'Frontend\Payment\IndexController@checkoutPaypal')->name('checkpout-paypal');
     Route::get('/payment/success', 'Frontend\Payment\IndexController@paymentSuccess')->name('payment-success');
@@ -61,6 +62,7 @@ Route::group(['middleware' => 'auth'], function () {
         //Order
         Route::get('orders', 'Admin\Order\IndexController@index')->name('orders');
         Route::get('package_queries', 'Admin\Order\IndexController@packageQueries')->name('package_queries');
+        Route::get('reports-package-query', 'Admin\Order\IndexController@packageQueriesAjax')->name('reports-package-query');
        // Route::get('order-reports', 'Admin\Order\IndexController@order_reports')->name('order-reports');
 
          //Reports

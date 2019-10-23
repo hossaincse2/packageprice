@@ -1,7 +1,7 @@
 <?php
 namespace App\Contracts;
 
-use App\Models\Order;
+use App\Models\UserGroup;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -10,15 +10,15 @@ use App\Models\Order;
  */
 
 /**
- * Description of CompanyInterface
+ * Description of UserGroupInterface
  *
- * @author pavel
+ * @author Rajan Bhatta
  */
-interface OrderInterface {
+interface UserGroupInterface {
     //put your code here
     public function find($id);
     public function findBy($where);
     public function findAll();
-    public function save(Order $order);
+    public function save(UserGroup $userGroup);
     public function delete($id);
 }

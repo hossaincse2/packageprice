@@ -57,6 +57,7 @@
                 <div class="navbar-custom-menu">
 
                     <ul class="nav navbar-nav">
+                            <li class="active"><a target="_blank" href="/">Visit Site</a> </li>
                         <li>
                             <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <i class="fa fa-fw fa-power-off"></i> {{ __('adminlte::adminlte.log_out') }}
@@ -90,7 +91,8 @@
 
                 <!-- Sidebar Menu -->
                 <ul class="sidebar-menu" data-widget="tree">
-                    @each('adminlte::partials.menu-item', $adminlte->menu(), 'item')
+                    {{-- @each('adminlte::partials.menu-item', $adminlte->menu(), 'item') --}}
+                    @include('adminlte::partials.menu-item')
                 </ul>
                 <!-- /.sidebar-menu -->
             </section>

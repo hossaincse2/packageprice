@@ -64,7 +64,7 @@ class PackageTableSeeder extends Seeder
             'type' => 'monthly', 
             'query_limit' => '25000',
             'price' => '250.00',
-            'api_key' => 'at_7OPkdPOlNaNr',
+            'api_key' => 'at_7OPkdPOlNbNr',
         ]);
 
         DB::table('packages')->insert([

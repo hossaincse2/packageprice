@@ -47,12 +47,8 @@ class OrderReop implements OrderInterface {
 
 
     public function findBy($where) {
-        return $this->OrderEloquent->where($where)->all();
-    }
-
-    public function countBy($where) {
-        return $this->OrderEloquent->groupBy($where)->count();
-    }
+        return $this->OrderEloquent->where($where)->get();
+    } 
 
     public function findAll() {
         return $this->OrderEloquent->all();

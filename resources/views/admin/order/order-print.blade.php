@@ -1,7 +1,7 @@
 
 
 @section('htmlheader_title')
-ORDER REPORT
+PACKAGE QUERY REPORT
 @endsection
 
 
@@ -13,7 +13,7 @@ ORDER REPORT
             <table border="0" align="center" width="921" style="text-align:center;">
 
                 <tr>
-                    <td><strong>Order REPORT </strong></td>
+                    <td><strong>PACKAGE QUERY REPORT </strong></td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>                
@@ -29,13 +29,16 @@ ORDER REPORT
             <table border="0"  class="table table-striped"  style="width:100%">
                 <thead>
                     <tr>
-                        <th>#SL</th>
-                        <th>Title</th>
-                        <th>Client IP</th>
-                        <th>User</th>
-                        <th>Crate Date</th>
-                        <th>Request URl</th>
-                        <th>Description</th>
+                            <th>#SL</th>
+                            <th>User Name</th>
+                            <th>Order Number</th>
+                            <th>Package Name</th>
+                            <th>Query Count</th>
+                            <th>Domain Name</th>
+                            <th>Ip Address</th>
+                            <th>Request URl</th>
+                            <th>Api Key</th>
+                            <th>Date</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,13 +48,16 @@ ORDER REPORT
 
                     @foreach ($data as $list)   
                     <tr>
-                        <td>{{$i++}}</td>
-                        <td>{{$list->title}}</td>
-                        <td>{{$list->client_ip}}</td>
-                        <td>{{$list->user->name}}</td>
-                        <td>{{$list->created_at}}</td>
-                        <td>{{$list->request_uri}}</td>
-                        <td style="width: 40px;">{{$list->long_text}}</td>
+                            <td>{{$i++}}</td>
+                            <td>{{$list->user->name}}</td>
+                            <td>{{$list->order->order_number}}</td>
+                            <td>{{$list->package->package_name}}</td>
+                            <td>{{$list->query_count}}</td>
+                            <td>{{$list->domain_name}}</td>
+                            <td>{{$list->ip_address}}</td>
+                            <td>{{$list->request_url}}</td>
+                            <td>{{$list->api_key}}</td>
+                            <td>{{$list->created_at}}</td>
                     </tr>
                     @endforeach
                 </tbody>

@@ -1,44 +1,52 @@
-@if (is_string($item))
-    <li class="header">{{ $item }}</li>
-@elseif (isset($item['header']))
-    <li class="header">{{ $item['header'] }}</li>
-@elseif (isset($item['search']) && $item['search'])
-    <form action="{{ $item['href'] }}" method="{{ $item['method'] }}" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="{{ $item['input_name'] }}" class="form-control" placeholder="
-            {{ $item['text'] }}
-          ">
-          <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat">
-                  <i class="fas fa-search"></i>
-                </button>
-              </span>
-        </div>
-      </form>
-@else
-    <li class="{{ $item['class'] }}">
-        <a href="{{ $item['href'] }}"
-           @if (isset($item['target'])) target="{{ $item['target'] }}" @endif
-        >
-            <i class="{{ $item['icon'] ?? 'far fa-fw fa-circle' }} {{ isset($item['icon_color']) ? 'text-' . $item['icon_color'] : '' }}"></i>
-            <span>
-                {{ $item['text'] }}
-            </span>
-
-            @if (isset($item['label']))
-                <span class="pull-right-container">
-                    <span class="label label-{{ $item['label_color'] ?? 'primary' }} pull-right">{{ $item['label'] }}</span>
-                </span>
-            @elseif (isset($item['submenu']))
-                <span class="pull-right-container">
-                    <i class="fas fa-angle-left pull-right"></i>
-                </span>
-            @endif
-        </a>
-        @if (isset($item['submenu']))
-            <ul class="{{ $item['submenu_class'] }}">
-                @each('adminlte::partials.menu-item', $item['submenu'], 'item')
-            </ul>
-        @endif
+ {{-- Custom Menu create. Its active for this now --}}
+<form action="#" method="get" class="sidebar-form">
+    <div class="input-group">
+      <input type="text" name="q" class="form-control" placeholder="search">
+      <span class="input-group-btn">
+            <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+              <i class="fas fa-search"></i>
+            </button>
+       </span>
+    </div>
+    </form>
+    <li class="header">MAIN NAVIGATION</li>
+    <li class="{{ (request()->is('admin/dashboard')) ? 'active' : '' }}">
+    <a href="/admin/dashboard"> <i class="fas fa-tachometer-alt "></i> <span> Dashboard </span> </a></li>
+    <li class="treeview">
+        <a href="/admin/package"> <i class="fas fa-box-open "></i> <span> Packages </span> <span class="pull-right-container"> <i class="fas fa-angle-left pull-right"></i> </span> </a>
+        <ul class="treeview-menu">
+            <li class="{{ (request()->is('admin/add-package')) ? 'active' : '' }}"> <a href="/admin/add-package"> <i class="far fa-fw fa-circle "></i> <span> Add Package </span> </a> </li>
+            <li class="{{ (request()->is('admin/package')) ? 'active' : '' }}"> <a href="/admin/package"> <i class="far fa-fw fa-circle "></i> <span> List Package </span> </a> </li>
+        </ul>
     </li>
-@endif
+    <li class="{{ (request()->is('admin/orders')) ? 'active' : '' }}">
+        <a href="/admin/orders"> <i class="fas fa-users "></i> <span> Cusomer Orders </span> </a> 
+    </li>
+    <li class="{{ (request()->is('admin/users')) ? 'active' : '' }}">
+        <a href="/admin/users"> <i class="fas fa-users "></i> <span> Users </span> </a>
+    </li>
+    <li class="{{ (request()->is('admin/package_queries')) ? 'active' : '' }}">
+        <a href="/admin/package_queries"> <i class="fas fa-users "></i> <span> Package Queries </span> </a>
+    </li>
+    <li class="header">Reports</li>
+
+    <li class="{{ (request()->is('admin/user-package-reports')) ? 'active' : '' }}">
+        <a href="/admin/user-package-reports"> <i class="fas fa-fw fa-user "></i> <span> User Package Report </span> </a>
+    </li>
+    <li class="{{ (request()->is('admin/audit-logs')) ? 'active' : '' }}">
+    <a href="/admin/audit-logs">
+        <i class="fas fa-fw fa-user "></i> <span> Audit Log </span> </a></li>
+    <li class="{{ (request()->is('admin/error-logs')) ? 'active' : '' }}">
+        <a href="/admin/error-logs"> <i class="fas fa-fw fa-user "></i> <span>  Error Log </span> </a>
+    </li>
+    <li class="header">ACCOUNT SETTINGS</li>
+
+    <li class="{{ (request()->is('admin/profile')) ? 'active' : '' }}">
+        <a href="/admin/profile"> <i class="fas fa-fw fa-user "></i> <span> Profile </span> </a>
+    </li>
+    <li class="{{ (request()->is('admin/settings')) ? 'active' : '' }}">
+        <a href="/admin/settings"> <i class="fas fa-fw fa-lock "></i> <span> Change Password </span></a>
+    </li>
+             
+    
+     

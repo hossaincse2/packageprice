@@ -45,12 +45,12 @@ class User extends Authenticatable
         return $this->hasMany(Models\Order::class);
     }
 
-    public function factory() {
-        return $this->belongsTo(Models\Factory::class, 'factory_id');
-    }
+    // public function factory() {
+    //     return $this->belongsTo(Models\Factory::class, 'factory_id');
+    // }
 
     public function groups() {
-        return $this->belongsToMany(UserGroup::class, "user_user_groups", "user_id", "group_id");
+        return $this->belongsToMany(Models\UserGroup::class, "user_user_groups", "user_id", "group_id");
     }
 
     public function hasGroup($group) {

@@ -78,4 +78,28 @@ class PackageQueryReop implements PackageQueryInterface {
         if($entity)
             $entity->delete();
     }
+
+    public function allPackageQuery($search = array()) { 
+
+        $packageQuery = $this->PackageQueryEloquent;
+  
+        // $packageQuery = $packageQuery->where("log_type", "=", "audit_log");
+
+        if ((isset($search['start_at']) && isset($search['end_at'])) && ($start_at = $search['start_at'] && $end_at = $search['end_at'])) {
+            $search['end_at'] = $search['end_at'] . " 23:59:59";
+            $search['start_at'] = $search['start_at'] . " 00:00:00";
+            $packageQuery = $packageQuery->where("created_at", ">=", $search['start_at'])->where("created_at", "<=", $search['end_at']);
+        } else if (isset($search['start_at']) && $start_at = $search['start_at']) {
+            $search['start_at'] = $search['start_at'] . " 00:00:00";
+            $packageQuery = $packageQuery->where("created_at", ">=", $start_at);
+        } else if (isset($search['end_at']) && $end_at = $search['end_at']) {
+            $search['end_at'] = $search['end_at'] . " 23:59:59";
+            $search['start_at'] = $search['start_at'] . " 00:00:00";
+            $packageQuery = $packageQuery->where("created_at", "<=", $end_at);
+        }
+
+        return $packageQuery->orderBy('id', 'desc')->get();
+        //echo $auditLogs->toSql();exit;
+        //dd(DB::getQueryLog());
+    }
 }

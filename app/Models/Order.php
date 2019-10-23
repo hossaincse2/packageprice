@@ -14,7 +14,7 @@ class Order extends Model
      * @var array
      */
     protected $fillable = [
-        'order_number', 'payment_method', 'user_id','package_id','query_count','status'
+        'order_number', 'payment_method', 'user_id','package_id','api_key','query_count','status'
     ];
 
     public function package() {

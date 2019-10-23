@@ -31,37 +31,31 @@
                    <thead>
                     <tr role="row">
                       <th>SL</th>
-                      <th>Package Name</th>
-                      <th>Type</th>
-                      <th>Query Limit</th>
-                      <th>Price</th>
-                      <th>Api Key</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Auth Token</th> 
                       <th>Action</th>
                     </tr>
                   </thead>
                 <tbody>
                   @php $i=1; @endphp
-                  @foreach($data as $package) 
+                  @foreach($data as $user) 
                     <tr role="row" class="odd">
                       <td class="sorting_1">{{ $i++ }}</td>
-                      <td class="sorting_1">{{ $package->package_name }}</td>
-                      <td>{{ $package->type }}</td>
-                      <td>{{ $package->query_limit }}</td>
-                      <td>{{ $package->price }}</td>
-                      <td>{{ $package->api_key }}</td>
-                      <td> <a href="{{ url('admin/add-package/'.$package->id) }}">Edit</a> | <a href="{{ url('admin/delete-package/'.$package->id) }}">Delete</a></td>
+                      <td class="sorting_1">{{ $user->name }}</td>
+                      <td>{{ $user->email }}</td>
+                      <td>{{ $user->auth_token }}</td> 
+                      <td> <a href="{{ url('admin/add-user/'.$user->id) }}">Edit</a> | <a href="{{ url('admin/delete-user/'.$user->id) }}">Delete</a></td>
                     </tr>
                   @endforeach 
                  </tbody>
                 <tfoot>
                 <tr>
-                  <th>SL</th>
-                  <th>Package Name</th>
-                  <th>Type</th>
-                  <th>Query Limit</th>
-                  <th>Price</th>
-                  <th>Api Key</th>
-                  <th>Action</th>
+                    <th>SL</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Auth Token</th> 
+                    <th>Action</th>
                 </tr>
                 </tfoot>
               </table></div>

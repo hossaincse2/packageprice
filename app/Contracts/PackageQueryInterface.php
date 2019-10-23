@@ -19,6 +19,7 @@ interface PackageQueryInterface {
     public function find($id);
     public function findBy($where);
     public function countBy($where);
+    public function allPackageQuery($search = array());
     public function findAll();
     public function save(UserPackageQuery $order);
     public function delete($id);

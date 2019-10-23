@@ -19,6 +19,7 @@ class CreateOrdersTable extends Migration
             $table->string('payment_method');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('package_id')->nullable();
+            $table->string('api_key');
             $table->integer('query_count')->nullable();
             $table->enum('status', ['active', 'expired','limited']);
             $table->timestamps();

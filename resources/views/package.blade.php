@@ -3,151 +3,188 @@
  @include('layouts.partial.nav')
 
    @section('content')
-         <div class="container mt-5">
-         <div class="row">
-         <div class="col-md-12">
-             <!-- Classic tabs -->
-             <div class="classic-tabs">
+   <div class="view full-page-intro">
 
-             <ul class="nav tabs-cyan" id="myClassicTab" role="tablist">
-             <li class="nav-item">
-                 <a class="nav-link  waves-light active show" id="profile-tab-classic" data-toggle="tab" href="#profile-classic"
-                 role="tab" aria-controls="profile-classic" aria-selected="true">Free</a>
-             </li>
-             <li class="nav-item">
-                 <a class="nav-link waves-light" id="follow-tab-classic" data-toggle="tab" href="#follow-classic" role="tab"
-                 aria-controls="follow-classic" aria-selected="false">One-time purchase</a>
-             </li>
-             <li class="nav-item">
-                 <a class="nav-link waves-light" id="contact-tab-classic" data-toggle="tab" href="#contact-classic" role="tab"
-                 aria-controls="contact-classic" aria-selected="false">Monthly subscription</a>
-             </li>
-             <li class="nav-item">
-                 <a class="nav-link waves-light" id="awesome-tab-classic" data-toggle="tab" href="#awesome-classic" role="tab"
-                 aria-controls="awesome-classic" aria-selected="false">Yearly subscription</a>
-             </li>
-             </ul>
-             <div class="tab-content" id="myClassicTabContent">
-             <div class="tab-pane fade active show" id="profile-classic" role="tabpanel" aria-labelledby="profile-tab-classic">
-             <table class="table table-borderless">
-                 <tbody>
-                   @foreach( $data as $key=>$package)
-                     @if($package->type == 'free')
-                       <tr class="rows">
-                         <th scope="row">
-                           <div class="custom-control custom-radio">
-                               <input type="radio" class="custom-control-input" id="defaultGroupExample{{ $key }}" value="{{ $package->id }}" data-price="{{ $package->price }}" name="groupOfDefaultRadios" checked>
-                               <label class="custom-control-label" for="defaultGroupExample{{ $key }}">{{ $package->query_limit }}</label>
-                           </div>
-                         </th>
-                         <td>Queries</td>
-                         <td>
-                           @php $pakage_type = config('enums.packageType');  @endphp
-                           @foreach ($pakage_type as $key=>$list)
-                             @if($key == $package->type) {{ $list }} @endif
-                           @endforeach
-                         </td>
-                         <td>$ {{ number_format($package->price, 2) }}</td>
-                       </tr>
-                       @endif
-                     @endforeach
-                 </tbody>
-                 </table>
-             </div>
-             <div class="tab-pane fade" id="follow-classic" role="tabpanel" aria-labelledby="follow-tab-classic">
-             <table class="table table-borderless">
-                 <tbody>
-                   @foreach( $data as $key=>$package)
-                     @if($package->type == 'fixed')
-                       <tr class="rows">
-                         <th scope="row">
-                           <div class="custom-control custom-radio">
-                               <input type="radio" class="custom-control-input" id="defaultGroupExample{{ $key }}" value="{{ $package->id }}" data-price="{{ $package->price }}" name="groupOfDefaultRadios" checked>
-                               <label class="custom-control-label" for="defaultGroupExample{{ $key }}">{{ $package->query_limit }}</label>
-                           </div>
-                         </th>
-                         <td>Queries</td>
-                         <td>
-                           @php $pakage_type = config('enums.packageType');  @endphp
-                           @foreach ($pakage_type as $key=>$list)
-                             @if($key == $package->type) {{ $list }} @endif
-                           @endforeach
-                         </td>
-                         <td>$ {{ number_format($package->price, 2) }}</td>
-                       </tr>
-                       @endif
-                     @endforeach
-                 </tbody>
-                 </table>
-             </div>
-             <div class="tab-pane fade" id="contact-classic" role="tabpanel" aria-labelledby="contact-tab-classic">
-             <table class="table table-borderless">
-                 <tbody>
-                   @foreach( $data as $key=>$package)
-                     @if($package->type == 'monthly')
-                       <tr class="rows">
-                         <th scope="row">
-                           <div class="custom-control custom-radio">
-                               <input type="radio" class="custom-control-input" id="defaultGroupExample{{ $key }}" value="{{ $package->id }}" data-price="{{ $package->price }}" name="groupOfDefaultRadios" checked>
-                               <label class="custom-control-label" for="defaultGroupExample{{ $key }}">{{ $package->query_limit }}</label>
-                           </div>
-                         </th>
-                         <td>Queries</td>
-                         <td>
-                           @php $pakage_type = config('enums.packageType');  @endphp
-                           @foreach ($pakage_type as $key=>$list)
-                             @if($key == $package->type) {{ $list }} @endif
-                           @endforeach
-                         </td>
-                         <td>$ {{ number_format($package->price, 2) }}</td>
-                       </tr>
-                       @endif
-                     @endforeach
-                 </tbody>
-                 </table>
-             </div>
-             <div class="tab-pane fade" id="awesome-classic" role="tabpanel" aria-labelledby="awesome-tab-classic">
-             <table class="table table-borderless">
-                 <tbody>
-                   @foreach( $data as $key=>$package)
-                     @if($package->type == 'yearly')
-                       <tr class="rows">
-                         <th scope="row">
-                           <div class="custom-control custom-radio">
-                               <input type="radio" class="custom-control-input" id="defaultGroupExample{{ $key }}" value="{{ $package->id }}" data-price="{{ $package->price }}" name="groupOfDefaultRadios" checked>
-                               <label class="custom-control-label" for="defaultGroupExample{{ $key }}">{{ $package->query_limit }}</label>
-                           </div>
-                         </th>
-                         <td>Queries</td>
-                         <td>
-                           @php $pakage_type = config('enums.packageType');  @endphp
-                           @foreach ($pakage_type as $key=>$list)
-                             @if($key == $package->type) {{ $list }} @endif
-                           @endforeach
-                         </td>
-                         <td>$ {{ number_format($package->price, 2) }}</td>
-                       </tr>
-                       @endif
-                     @endforeach
-                 </tbody>
-                 </table>
-             </div>
-             </div>
+      <!--Video source-->
+      {{-- <video class="video-intro" autoplay loop muted>
+        <source src="https://mdbootstrap.com/img/video/animation-intro.mp4" type="video/mp4" />
+      </video> --}}
 
-             </div>
-             <div class="text-center">
-             <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-             {{-- <button type="button" class="btn btn-warning" id="card-button" onclick="checkout('checkpout-strip')">Buy With Credit Card</button> --}}
-             <button type="button" class="btn btn-warning" id="card-button" data-toggle="modal" data-target="#myModal">Buy With Credit Card</button>
-                 <span>Or</span>
-             <!-- Default button -->
-             <button type="button"  onclick="checkout('checkpout-paypal')" class="btn btn-warning">Buy With Paypal</button>
-             </div>
-             <!-- Classic tabs -->
-             </div>
-             </div>
-         </div>
-     </div>
+      <!-- Mask & flexbox options-->
+      <div class="mask   d-flex justify-content-center align-items-center">
+
+        <!-- Content -->
+        <div class="container">
+
+          <!--Grid row-->
+          <div class="row d-flex h-100 justify-content-center align-items-center wow fadeIn">
+
+            <!--Grid column-->
+            <div class="col-md-12 mb-4 white-text text-center text-md-left">
+                <div class="container mt-5">
+                    <div class="row">
+                    <div class="col-md-12">
+                        <!-- Classic tabs -->
+                        <div class="classic-tabs">
+           
+                        <ul class="nav tabs-cyan" id="myClassicTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link  waves-light active show" id="profile-tab-classic" data-toggle="tab" href="#profile-classic"
+                            role="tab" aria-controls="profile-classic" aria-selected="true">Free</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-light" id="follow-tab-classic" data-toggle="tab" href="#follow-classic" role="tab"
+                            aria-controls="follow-classic" aria-selected="false">One-time purchase</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-light" id="contact-tab-classic" data-toggle="tab" href="#contact-classic" role="tab"
+                            aria-controls="contact-classic" aria-selected="false">Monthly subscription</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-light" id="awesome-tab-classic" data-toggle="tab" href="#awesome-classic" role="tab"
+                            aria-controls="awesome-classic" aria-selected="false">Yearly subscription</a>
+                        </li>
+                        </ul>
+                        <div class="tab-content" id="myClassicTabContent">
+                        <div class="tab-pane fade active show" id="profile-classic" role="tabpanel" aria-labelledby="profile-tab-classic">
+                        <table class="table table-borderless">
+                            <tbody>
+                              @foreach( $data as $key=>$package)
+                                @if($package->type == 'free')
+                                  <tr class="rows">
+                                    <th scope="row">
+                                      <div class="custom-control custom-radio">
+                                          <input type="radio" class="custom-control-input" id="defaultGroupExample{{ $key }}" value="{{ $package->id }}" data-price="{{ $package->price }}" name="groupOfDefaultRadios" checked>
+                                          <label class="custom-control-label" for="defaultGroupExample{{ $key }}">{{ $package->query_limit }}</label>
+                                      </div>
+                                    </th>
+                                    <td>Queries</td>
+                                    <td>
+                                      @php $pakage_type = config('enums.packageType');  @endphp
+                                      @foreach ($pakage_type as $key=>$list)
+                                        @if($key == $package->type) {{ $list }} @endif
+                                      @endforeach
+                                    </td>
+                                    <td>$ {{ number_format($package->price, 2) }}</td>
+                                  </tr>
+                                  @endif
+                                @endforeach
+                            </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="follow-classic" role="tabpanel" aria-labelledby="follow-tab-classic">
+                        <table class="table table-borderless">
+                            <tbody>
+                              @foreach( $data as $key=>$package)
+                                @if($package->type == 'fixed')
+                                  <tr class="rows">
+                                    <th scope="row">
+                                      <div class="custom-control custom-radio">
+                                          <input type="radio" class="custom-control-input" id="defaultGroupExample{{ $key }}" value="{{ $package->id }}" data-price="{{ $package->price }}" name="groupOfDefaultRadios" checked>
+                                          <label class="custom-control-label" for="defaultGroupExample{{ $key }}">{{ $package->query_limit }}</label>
+                                      </div>
+                                    </th>
+                                    <td>Queries</td>
+                                    <td>
+                                      @php $pakage_type = config('enums.packageType');  @endphp
+                                      @foreach ($pakage_type as $key=>$list)
+                                        @if($key == $package->type) {{ $list }} @endif
+                                      @endforeach
+                                    </td>
+                                    <td>$ {{ number_format($package->price, 2) }}</td>
+                                  </tr>
+                                  @endif
+                                @endforeach
+                            </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="contact-classic" role="tabpanel" aria-labelledby="contact-tab-classic">
+                        <table class="table table-borderless">
+                            <tbody>
+                              @foreach( $data as $key=>$package)
+                                @if($package->type == 'monthly')
+                                  <tr class="rows">
+                                    <th scope="row">
+                                      <div class="custom-control custom-radio">
+                                          <input type="radio" class="custom-control-input" id="defaultGroupExample{{ $key }}" value="{{ $package->id }}" data-price="{{ $package->price }}" name="groupOfDefaultRadios" checked>
+                                          <label class="custom-control-label" for="defaultGroupExample{{ $key }}">{{ $package->query_limit }}</label>
+                                      </div>
+                                    </th>
+                                    <td>Queries</td>
+                                    <td>
+                                      @php $pakage_type = config('enums.packageType');  @endphp
+                                      @foreach ($pakage_type as $key=>$list)
+                                        @if($key == $package->type) {{ $list }} @endif
+                                      @endforeach
+                                    </td>
+                                    <td>$ {{ number_format($package->price, 2) }}</td>
+                                  </tr>
+                                  @endif
+                                @endforeach
+                            </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="awesome-classic" role="tabpanel" aria-labelledby="awesome-tab-classic">
+                        <table class="table table-borderless">
+                            <tbody>
+                              @foreach( $data as $key=>$package)
+                                @if($package->type == 'yearly')
+                                  <tr class="rows">
+                                    <th scope="row">
+                                      <div class="custom-control custom-radio">
+                                          <input type="radio" class="custom-control-input" id="defaultGroupExample{{ $key }}" value="{{ $package->id }}" data-price="{{ $package->price }}" name="groupOfDefaultRadios" checked>
+                                          <label class="custom-control-label" for="defaultGroupExample{{ $key }}">{{ $package->query_limit }}</label>
+                                      </div>
+                                    </th>
+                                    <td>Queries</td>
+                                    <td>
+                                      @php $pakage_type = config('enums.packageType');  @endphp
+                                      @foreach ($pakage_type as $key=>$list)
+                                        @if($key == $package->type) {{ $list }} @endif
+                                      @endforeach
+                                    </td>
+                                    <td>$ {{ number_format($package->price, 2) }}</td>
+                                  </tr>
+                                  @endif
+                                @endforeach
+                            </tbody>
+                            </table>
+                        </div>
+                        </div>
+           
+                        </div>
+                        <div class="text-center">
+                        <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+                        {{-- <button type="button" class="btn btn-warning" id="card-button" onclick="checkout('checkpout-strip')">Buy With Credit Card</button> --}}
+                        <button type="button" class="btn btn-warning" id="card-button" data-toggle="modal" data-target="#myModal">Buy With Credit Card</button>
+                            <span>Or</span>
+                        <!-- Default button -->
+                        <button type="button"  onclick="checkout('checkpout-paypal')" class="btn btn-warning">Buy With Paypal</button>
+                        </div>
+                        <!-- Classic tabs -->
+                        </div>
+                        </div>
+                    </div>
+                </div>
+             
+            </div>
+            <!--Grid column-->
+ 
+
+          </div>
+          <!--Grid row-->
+
+        </div>
+        <!-- Content -->
+
+      </div>
+      <!-- Mask & flexbox options-->
+
+    </div>
+    <!-- Full Page Intro -->
+
+</header>
+        
 
 
      <!-- Modal -->
