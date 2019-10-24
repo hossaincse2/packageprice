@@ -45,7 +45,7 @@ public function __construct(PackageInterface $package, Order $orderEloquent, Ord
     public function stripePost(Request $request)
     {
         //dd($request->stripeToken);
-
+        $log_title='';
         try {
 
         $packageDetails = $this->package->find($request->package_id);
